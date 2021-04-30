@@ -1,4 +1,4 @@
-use std::io;
+use std::{fmt, io};
 
 use company::{Department, DepartmentMap, Departments, Member};
 
