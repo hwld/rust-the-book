@@ -14,7 +14,6 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
 #[allow(dead_code)]
 fn largest_clone<T: PartialOrd + Clone>(list: &[T]) -> T {
     // Tの参照からTに解決するために、cloneを使用して、新しいデータを作成する
-
     let mut largest = list[0].clone();
 
     for item in list.clone() {
