@@ -28,4 +28,9 @@ fn main() {
     let boxing = MyBox::new(MyBox::new(MyBox::new(String::from("Rust"))));
     // ネストしても実行できる。
     hello(&boxing);
+
+    let b = MyBox::new(String::from("Hello"));
+    // (*(b.deref)).clear() が実行されている。
+    // clearは &mut selfを受け取るが、MyBoxのDerefMutを実装していないのでエラーになる
+    //b.clear();
 }
