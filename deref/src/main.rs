@@ -11,9 +11,12 @@ impl<T> MyBox<T> {
 impl<T> Deref for MyBox<T> {
     type Target = T;
 
+    // MyBox<T> と T　を同じように扱える
+    // (*(MyBox<T>::deref())) = T
+
     // &MyBox<T> と　&T　を同じように扱える
     // &(*(MyBox<T>::deref())) = &T
-    // 仮引数に&T、実引数に&MyBox<T>のようなときに、コンパイラはこれを自動で行ってくれる。これを参照外し型矯正という。
+    // &Tと&MyBox<T>を変換したいときに、コンパイラはこれを自動で行ってくれる。これを参照外し型強制という。
     fn deref(&self) -> &T {
         &self.0
     }
@@ -22,6 +25,10 @@ impl<T> Deref for MyBox<T> {
 
 fn hello(name: &str) {
     println!("Hello, {}!", name);
+}
+
+fn re() -> impl Fn(i32) -> i32 {
+    |x| x + 1
 }
 
 fn main() {
