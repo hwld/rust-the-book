@@ -46,14 +46,13 @@ fn main() {
     // この場合、引数がBで、左辺がAなので、 from(B) -> A になる。
     // FromトレイトはFrom<T> for U { from(t: T) -> Self }; のようになっているので、
     // T = B, U = Self = A, と推論して、 From<B> for A, Aに実装されているFrom<B>のfromを呼び出す.
-    let a :A = From::from(B{});
+    let a: A = From::from(B {});
 
     // 引数がCで、左辺がAなので、 from(C) -> A になり、 Aに実装されているFrom<C>のfromを呼び出すが、存在しないのでエラーになる。
     // let a :A = From::from(C{});
 
-
-    let b  = B{};
-    let _c = C{};
+    let b = B {};
+    let _c = C {};
 
     // 引数が&Aと&Bなので、それぞれA,Bに実装されているTraitのfooを呼び出す
     // これは、Trait:fooが&selfに対して呼び出されるからで、&selfが&Aであるなら、AにTraitが実装されていると推論する
@@ -66,4 +65,8 @@ fn main() {
     // Trait2::bar();
     <A as Trait2>::bar();
     <B as Trait2>::bar();
+
+    // トレイトを指定しなくても、Trait::fooと推論できる
+    a.foo();
+    b.foo();
 }
